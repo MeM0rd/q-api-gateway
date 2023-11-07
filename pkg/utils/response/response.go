@@ -38,3 +38,14 @@ func NoContent(w http.ResponseWriter) {
 	w.Header().Set("Content-Type", "Application/json")
 	w.WriteHeader(http.StatusNoContent)
 }
+
+func Common(w http.ResponseWriter, code int, message string) {
+	w.Header().Set("Content-Type", "Application/json")
+	w.WriteHeader(code)
+	w.Write([]byte(message))
+}
+
+func Unauthorized(w http.ResponseWriter) {
+	w.WriteHeader(http.StatusUnauthorized)
+	w.Write([]byte("unauthorized"))
+}

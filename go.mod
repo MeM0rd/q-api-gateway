@@ -1,6 +1,6 @@
 module github.com/MeM0rd/q-api-gateway
 
-go 1.18
+go 1.20
 
 require (
 	github.com/golang/protobuf v1.5.3 // indirect

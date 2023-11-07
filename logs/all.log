@@ -1,2 +1,35 @@
 [36mINFO[0m[2023-11-04T16:39:39+03:00]main.go:38 main.start() Server starting                              
 [36mINFO[0m[2023-11-04T19:20:43+03:00]main.go:45 main.start() Server starting                              
+[36mINFO[0m[2023-11-04T19:58:09+03:00]main.go:45 main.start() Server starting                              
+[36mINFO[0m[2023-11-04T20:01:40+03:00]main.go:45 main.start() Server starting                              
+[36mINFO[0m[2023-11-04T20:06:39+03:00]main.go:40 main.start() &{0xc00016e480 {<nil> 0}}                    
+[36mINFO[0m[2023-11-04T20:06:39+03:00]main.go:47 main.start() Server starting                              
+[36mINFO[0m[2023-11-04T20:06:53+03:00]main.go:40 main.start() qqqwqw   &{0xc00016e480 {<nil> 0}}           
+[36mINFO[0m[2023-11-04T20:06:53+03:00]main.go:47 main.start() Server starting                              
+[36mINFO[0m[2023-11-04T20:07:28+03:00]main.go:40 main.start() qqqwqw                                       
+[36mINFO[0m[2023-11-04T20:07:28+03:00]main.go:47 main.start() Server starting                              
+[36mINFO[0m[2023-11-04T20:07:34+03:00]main.go:40 main.start() qqqwqw                                       
+[36mINFO[0m[2023-11-04T20:07:34+03:00]main.go:47 main.start() Server starting                              
+[36mINFO[0m[2023-11-04T20:08:14+03:00]main.go:40 main.start() qqqwqw                                       
+[36mINFO[0m[2023-11-04T20:08:14+03:00]main.go:47 main.start() Server starting                              
+[36mINFO[0m[2023-11-04T20:09:09+03:00]main.go:43 main.start() qqqwqw   :8080                               
+[36mINFO[0m[2023-11-04T20:09:09+03:00]main.go:50 main.start() Server starting                              
+[36mINFO[0m[2023-11-04T20:09:15+03:00]main.go:43 main.start() qqqwqw   :8080                               
+[36mINFO[0m[2023-11-04T20:09:15+03:00]main.go:50 main.start() Server starting                              
+[36mINFO[0m[2023-11-04T20:09:18+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:8090: connect: connection refused" 
+[36mINFO[0m[2023-11-04T20:09:20+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:8090: connect: connection refused" 
+[36mINFO[0m[2023-11-04T20:09:21+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:8090: connect: connection refused" 
+[36mINFO[0m[2023-11-05T21:21:07+03:00]main.go:43 main.start() qqqwqw   :8080                               
+[36mINFO[0m[2023-11-05T21:21:07+03:00]main.go:50 main.start() Server starting                              
+[36mINFO[0m[2023-11-05T22:06:14+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unimplemented desc = method Register not implemented 
+[36mINFO[0m[2023-11-05T22:06:15+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unimplemented desc = method Register not implemented 
+[36mINFO[0m[2023-11-05T22:06:16+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unimplemented desc = method Register not implemented 
+[36mINFO[0m[2023-11-05T22:06:36+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unimplemented desc = method Register not implemented 
+[36mINFO[0m[2023-11-05T22:06:36+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unimplemented desc = method Register not implemented 
+[36mINFO[0m[2023-11-05T22:06:37+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unimplemented desc = method Register not implemented 
+[36mINFO[0m[2023-11-05T22:07:22+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unimplemented desc = method Register not implemented 
+[36mINFO[0m[2023-11-05T22:07:23+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unimplemented desc = method Register not implemented 
+[36mINFO[0m[2023-11-06T00:49:13+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unavailable desc = error reading from server: EOF 
+[36mINFO[0m[2023-11-06T04:25:45+03:00]main.go:43 main.start() qqqwqw   :8080                               
+[36mINFO[0m[2023-11-06T04:25:45+03:00]main.go:50 main.start() Server starting                              
+[36mINFO[0m[2023-11-06T04:26:17+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unavailable desc = error reading from server: EOF 

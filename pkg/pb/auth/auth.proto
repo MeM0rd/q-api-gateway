@@ -6,6 +6,8 @@ option go_package="./pkg/pb/auth;auth_pb_service";
 
 service AuthPbService {
   rpc Register(RegisterRequest) returns (RegisterResponse) {}
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc Logout(LogoutRequest) returns (LogoutResponse) {}
 }
 
 message RegisterRequest {
@@ -16,6 +18,28 @@ message RegisterRequest {
 }
 
 message RegisterResponse {
+  string status = 1;
+  bytes msg = 2;
+  string err = 3;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+  string lifetime = 2;
+  string msg = 3;
+  string err = 4;
+}
+
+message LogoutRequest {
+  string token = 1;
+}
+
+message LogoutResponse {
   string status = 1;
   string err = 2;
 }
