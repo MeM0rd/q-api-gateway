@@ -27,6 +27,11 @@ func Open() {
 	if err != nil {
 		log.Fatalf("postgres connection error: %s", err)
 	}
+
+	err = DB.Ping()
+	if err != nil {
+		log.Fatalf("Postgres ping failde: %v", err)
+	}
 }
 
 func Close() {

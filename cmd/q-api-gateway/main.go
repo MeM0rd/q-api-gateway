@@ -3,8 +3,10 @@ package main
 import (
 	"github.com/MeM0rd/q-api-gateway/internal/handlers/auth"
 	"github.com/MeM0rd/q-api-gateway/internal/handlers/profile"
+	"github.com/MeM0rd/q-api-gateway/internal/handlers/quote"
 	"github.com/MeM0rd/q-api-gateway/pkg/client/postgres"
 	logger "github.com/MeM0rd/q-api-gateway/pkg/logger"
+	"github.com/joho/godotenv"
 	"github.com/julienschmidt/httprouter"
 	"net"
 	"net/http"
@@ -13,6 +15,8 @@ import (
 )
 
 func init() {
+	godotenv.Load(".env")
+
 	postgres.Open()
 }
 
@@ -25,8 +29,12 @@ func main() {
 
 	authHandler := auth.NewHandler(l)
 	authHandler.Route(r)
+
 	profileHandler := profile.NewHandler()
 	profileHandler.Route(r)
+
+	quoteHandler := quote.NewHandler(l)
+	quoteHandler.Route(r)
 
 	start(r, l)
 }
@@ -36,6 +44,8 @@ func start(r *httprouter.Router, logger *logger.Logger) {
 	if err != nil {
 		logger.Fatalf("Erorr net.Listen: %v", err)
 	}
+
+	logger.Infof("qqqwqw   %v", os.Getenv("PORT"))
 
 	server := http.Server{
 		Handler:      r,
