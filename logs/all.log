@@ -33,3 +33,21 @@
 [36mINFO[0m[2023-11-06T04:25:45+03:00]main.go:43 main.start() qqqwqw   :8080                               
 [36mINFO[0m[2023-11-06T04:25:45+03:00]main.go:50 main.start() Server starting                              
 [36mINFO[0m[2023-11-06T04:26:17+03:00]auth.go:47 github.com/MeM0rd/q-api-gateway/internal/handlers/auth.(*handler).Register() error sendind to auth-service: rpc error: code = Unavailable desc = error reading from server: EOF 
+[36mINFO[0m[2023-11-18T09:42:57+03:00]main.go:55 main.start() qqqwqw                                       
+[36mINFO[0m[2023-11-18T09:42:57+03:00]main.go:62 main.start() Server starting                              
+[36mINFO[0m[2023-11-18T09:43:14+03:00]main.go:55 main.start() qqqwqw                                       
+[36mINFO[0m[2023-11-18T09:43:14+03:00]main.go:62 main.start() Server starting                              
+[36mINFO[0m[2023-11-18T09:44:57+03:00]main.go:60 main.start() qqqwqw                                       
+[36mINFO[0m[2023-11-18T09:44:57+03:00]main.go:67 main.start() Server starting                              
+[36mINFO[0m[2023-11-18T09:46:43+03:00]main.go:62 main.start() qqqwqw                                       
+[36mINFO[0m[2023-11-18T09:46:43+03:00]main.go:69 main.start() Server starting                              
+[36mINFO[0m[2023-11-18T09:47:00+03:00]main.go:62 main.start() qqqwqw                                       
+[36mINFO[0m[2023-11-18T09:47:00+03:00]main.go:69 main.start() Server starting                              
+[36mINFO[0m[2023-11-18T09:47:17+03:00]main.go:63 main.start() qqqwqw                                       
+[36mINFO[0m[2023-11-18T09:47:17+03:00]main.go:70 main.start() Server starting                              
+[36mINFO[0m[2023-11-18T09:47:27+03:00]main.go:63 main.start() qqqwqw                                       
+[36mINFO[0m[2023-11-18T09:47:27+03:00]main.go:70 main.start() Server starting                              
+[36mINFO[0m[2023-11-18T09:47:39+03:00]main.go:63 main.start() qqqwqw                                       
+[36mINFO[0m[2023-11-18T09:47:39+03:00]main.go:70 main.start() Server starting                              
+[36mINFO[0m[2023-11-18T09:48:53+03:00]main.go:63 main.start() qqqwqw                                       
+[36mINFO[0m[2023-11-18T09:48:53+03:00]main.go:70 main.start() Server starting                              

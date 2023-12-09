@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/MeM0rd/q-api-gateway/internal/handlers/auth"
 	"github.com/MeM0rd/q-api-gateway/internal/handlers/profile"
+	"github.com/MeM0rd/q-api-gateway/internal/handlers/quote"
 	"github.com/MeM0rd/q-api-gateway/pkg/client/postgres"
 	logger "github.com/MeM0rd/q-api-gateway/pkg/logger"
 	"github.com/joho/godotenv"
@@ -28,8 +29,12 @@ func main() {
 
 	authHandler := auth.NewHandler(l)
 	authHandler.Route(r)
+
 	profileHandler := profile.NewHandler()
 	profileHandler.Route(r)
+
+	quoteHandler := quote.NewHandler(l)
+	quoteHandler.Route(r)
 
 	start(r, l)
 }
