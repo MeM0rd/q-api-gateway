@@ -9,6 +9,7 @@ import (
 	"github.com/MeM0rd/q-api-gateway/pkg/sessions"
 	"github.com/MeM0rd/q-api-gateway/pkg/utils/response"
 	"github.com/julienschmidt/httprouter"
+	"google.golang.org/grpc"
 	"log"
 	"net/http"
 	"strconv"
@@ -18,21 +19,34 @@ type handler struct {
 	logger logger.Logger
 }
 
-func NewHandler(logger *logger.Logger) handlers.Handler {
+func NewHandler(l *logger.Logger) handlers.Handler {
+	Init(l)
 	return &handler{
-		logger: *logger,
+		logger: *l,
 	}
 }
 
 func (h *handler) Route(r *httprouter.Router) {
 	r.GET("/quotes", h.GetList)
 	r.POST("/quotes", h.Create)
-	r.DELETE("/quotes", h.Delete)
+	r.DELETE("/quotes/:id", h.Delete)
+}
+
+var conn *grpc.ClientConn
+var quotePbClient quotePbService.QuotePbServiceClient
+
+func Init(l *logger.Logger) {
+	var err error
+
+	conn, err = quotePbService.NewConnection()
+	if err != nil {
+		l.Infof("Cannot create quotePbService conn: %v", err)
+	}
+
+	quotePbClient = quotePbService.NewQuotePbServiceClient(conn)
 }
 
 func (h *handler) GetList(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
-	conn := quotePbService.NewConn(&h.logger)
-	quotePbClient := quotePbService.NewQuotePbServiceClient(conn)
 	getListResponse, err := quotePbClient.GetList(context.Background(), &quotePbService.GetListRequest{})
 	if err != nil {
 		h.logger.Infof("error in quote service: %v", err)
@@ -53,8 +67,6 @@ func (h *handler) Create(w http.ResponseWriter, r *http.Request, params httprout
 		return
 	}
 
-	conn := quotePbService.NewConn(&h.logger)
-	quotePbClient := quotePbService.NewQuotePbServiceClient(conn)
 	createResponse, err := quotePbClient.Create(context.Background(), &quotePbService.CreateRequest{
 		Title:  quote.Title,
 		Text:   quote.Text,
@@ -89,8 +101,6 @@ func (h *handler) Delete(w http.ResponseWriter, r *http.Request, params httprout
 		return
 	}
 
-	conn := quotePbService.NewConn(&h.logger)
-	quotePbClient := quotePbService.NewQuotePbServiceClient(conn)
 	deleteResponse, err := quotePbClient.Delete(context.Background(), &quotePbService.DeleteRequest{
 		QuoteId: int64(quoteId),
 		UserId:  int64(session.UserId),

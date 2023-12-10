@@ -9,6 +9,7 @@ import (
 	"github.com/MeM0rd/q-api-gateway/pkg/sessions"
 	"github.com/MeM0rd/q-api-gateway/pkg/utils/response"
 	"github.com/julienschmidt/httprouter"
+	"google.golang.org/grpc"
 	"net/http"
 	"os"
 	"time"
@@ -19,6 +20,7 @@ type handler struct {
 }
 
 func NewHandler(l *logger.Logger) handlers.Handler {
+	Init(l)
 	return &handler{
 		logger: *l,
 	}
@@ -28,6 +30,20 @@ func (h *handler) Route(r *httprouter.Router) {
 	r.POST("/auth/register", h.Register)
 	r.POST("/auth/login", h.Login)
 	r.GET("/auth/logout", h.Logout)
+}
+
+var conn *grpc.ClientConn
+var authPbClient authPbService.AuthPbServiceClient
+
+func Init(l *logger.Logger) {
+	var err error
+
+	conn, err = authPbService.NewConnection()
+	if err != nil {
+		l.Infof("Cannot create authPbService conn: %v", err)
+	}
+
+	authPbClient = authPbService.NewAuthPbServiceClient(conn)
 }
 
 func (h *handler) Register(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
@@ -40,9 +56,7 @@ func (h *handler) Register(w http.ResponseWriter, r *http.Request, params httpro
 		return
 	}
 
-	conn := authPbService.NewConn(&h.logger)
-	authClient := authPbService.NewAuthPbServiceClient(conn)
-	registerResponse, err := authClient.Register(context.Background(), &authPbService.RegisterRequest{
+	registerResponse, err := authPbClient.Register(context.Background(), &authPbService.RegisterRequest{
 		Email:    rm.Email,
 		Surname:  rm.Surname,
 		Name:     rm.Name,
@@ -74,9 +88,7 @@ func (h *handler) Login(w http.ResponseWriter, r *http.Request, params httproute
 		return
 	}
 
-	conn := authPbService.NewConn(&h.logger)
-	authClient := authPbService.NewAuthPbServiceClient(conn)
-	loginResponse, err := authClient.Login(context.Background(), &authPbService.LoginRequest{
+	loginResponse, err := authPbClient.Login(context.Background(), &authPbService.LoginRequest{
 		Email:    lm.Email,
 		Password: lm.Password,
 	})
@@ -115,9 +127,7 @@ func (h *handler) Logout(w http.ResponseWriter, r *http.Request, params httprout
 		return
 	}
 
-	conn := authPbService.NewConn(&h.logger)
-	authClient := authPbService.NewAuthPbServiceClient(conn)
-	loginResponse, err := authClient.Logout(context.Background(), &authPbService.LogoutRequest{
+	loginResponse, err := authPbClient.Logout(context.Background(), &authPbService.LogoutRequest{
 		Token: token,
 	})
 	if err != nil {
