@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/MeM0rd/q-api-gateway/internal/handlers"
+	mw "github.com/MeM0rd/q-api-gateway/internal/middleware"
 	"github.com/MeM0rd/q-api-gateway/pkg/logger"
 	authPbService "github.com/MeM0rd/q-api-gateway/pkg/pb/auth"
 	"github.com/MeM0rd/q-api-gateway/pkg/sessions"
@@ -29,7 +30,7 @@ func NewHandler(l *logger.Logger) handlers.Handler {
 func (h *handler) Route(r *httprouter.Router) {
 	r.POST("/auth/register", h.Register)
 	r.POST("/auth/login", h.Login)
-	r.GET("/auth/logout", h.Logout)
+	r.GET("/auth/logout", mw.Auth(h.Logout))
 }
 
 var conn *grpc.ClientConn

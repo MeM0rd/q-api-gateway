@@ -4,7 +4,9 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/MeM0rd/q-api-gateway/internal/handlers"
+	mw "github.com/MeM0rd/q-api-gateway/internal/middleware"
 	"github.com/MeM0rd/q-api-gateway/pkg/logger"
+
 	quotePbService "github.com/MeM0rd/q-api-gateway/pkg/pb/quote"
 	"github.com/MeM0rd/q-api-gateway/pkg/sessions"
 	"github.com/MeM0rd/q-api-gateway/pkg/utils/response"
@@ -28,8 +30,8 @@ func NewHandler(l *logger.Logger) handlers.Handler {
 
 func (h *handler) Route(r *httprouter.Router) {
 	r.GET("/quotes", h.GetList)
-	r.POST("/quotes", h.Create)
-	r.DELETE("/quotes/:id", h.Delete)
+	r.POST("/quotes", mw.Auth(h.Create))
+	r.DELETE("/quotes/:id", mw.Auth(h.Delete))
 }
 
 var conn *grpc.ClientConn
