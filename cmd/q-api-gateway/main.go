@@ -45,8 +45,6 @@ func start(r *httprouter.Router, logger *logger.Logger) {
 		logger.Fatalf("Erorr net.Listen: %v", err)
 	}
 
-	logger.Infof("qqqwqw   %v", os.Getenv("PORT"))
-
 	server := http.Server{
 		Handler:      r,
 		WriteTimeout: 15 * time.Second,

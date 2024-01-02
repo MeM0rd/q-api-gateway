@@ -6,6 +6,7 @@ import (
 	"github.com/MeM0rd/q-api-gateway/internal/handlers"
 	mw "github.com/MeM0rd/q-api-gateway/internal/middleware"
 	"github.com/MeM0rd/q-api-gateway/pkg/logger"
+	"github.com/MeM0rd/q-api-gateway/pkg/mail"
 	authPbService "github.com/MeM0rd/q-api-gateway/pkg/pb/auth"
 	"github.com/MeM0rd/q-api-gateway/pkg/sessions"
 	"github.com/MeM0rd/q-api-gateway/pkg/utils/response"
@@ -74,7 +75,7 @@ func (h *handler) Register(w http.ResponseWriter, r *http.Request, params httpro
 		return
 	}
 
-	h.logger.Infof("msg from auth svc: %v", registerResponse.Msg)
+	go mail.PrepareGmail([]string{registerResponse.Email}, "registration")
 
 	response.Created(w, registerResponse.Msg)
 }

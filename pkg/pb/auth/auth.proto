@@ -20,7 +20,8 @@ message RegisterRequest {
 message RegisterResponse {
   string status = 1;
   bytes msg = 2;
-  string err = 3;
+  string email = 3;
+  string err = 4;
 }
 
 message LoginRequest {

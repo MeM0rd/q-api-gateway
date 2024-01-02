@@ -61,7 +61,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	l.Infof("%v", mainFile)
 
 	l.SetOutput(io.Discard)
 
