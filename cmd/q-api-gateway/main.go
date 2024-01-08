@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/MeM0rd/q-api-gateway/internal/cron"
 	"github.com/MeM0rd/q-api-gateway/internal/handlers/auth"
 	"github.com/MeM0rd/q-api-gateway/internal/handlers/profile"
 	"github.com/MeM0rd/q-api-gateway/internal/handlers/quote"
@@ -17,6 +18,8 @@ import (
 func init() {
 	godotenv.Load(".env")
 
+	cron.Start()
+
 	postgres.Open()
 }
 
@@ -24,17 +27,11 @@ func main() {
 	r := httprouter.New()
 	l := logger.New()
 
+	defer cron.Stop()
 	defer postgres.Close()
 	defer l.Info("Main func closed")
 
-	authHandler := auth.NewHandler(l)
-	authHandler.Route(r)
-
-	profileHandler := profile.NewHandler()
-	profileHandler.Route(r)
-
-	quoteHandler := quote.NewHandler(l)
-	quoteHandler.Route(r)
+	registerRoutes(r, l)
 
 	start(r, l)
 }
@@ -55,4 +52,15 @@ func start(r *httprouter.Router, logger *logger.Logger) {
 	if err != nil {
 		logger.Fatalf("Error server.Serve: %v", err)
 	}
+}
+
+func registerRoutes(r *httprouter.Router, l *logger.Logger) {
+	authHandler := auth.NewHandler(l)
+	authHandler.Route(r)
+
+	profileHandler := profile.NewHandler()
+	profileHandler.Route(r)
+
+	quoteHandler := quote.NewHandler(l)
+	quoteHandler.Route(r)
 }
